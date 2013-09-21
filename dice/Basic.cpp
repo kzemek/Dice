@@ -4,13 +4,13 @@ namespace dice {
 
 namespace basic {
 
-Die<4> d4;
-Die<6> d6;
-Die<8> d8;
-Die<10> d10;
-Die<12> d12;
-Die<20> d20;
-Die<100> d100;
+const Die d4{ 4 };
+const Die d6{ 6 };
+const Die d8{ 8 };
+const Die d10{ 10 };
+const Die d12{ 12 };
+const Die d20{ 20 };
+const Die d100{ 100 };
 
 }
 

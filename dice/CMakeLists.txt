@@ -1,3 +1,5 @@
 add_library( dice
-	Basic.cpp
+    Basic.cpp
+    Dice.cpp
+    Die.cpp
 )

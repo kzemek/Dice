@@ -3,7 +3,6 @@
 
 #include "Basic.hpp"
 #include "Dice.hpp"
-#include "DiceCollection.hpp"
 #include "Die.hpp"
 
 #endif // SRD_DICE_INCLUDE
