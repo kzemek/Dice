@@ -13,6 +13,6 @@ int main() {
 
     std::cout << costam( d12 ) << std::endl;
 
-    dice::Die d13{ 13 };
+    dice::Die<13> d13{};
     std::cout << (2*d13 + 10).roll() << std::endl;
 }
