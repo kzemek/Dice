@@ -3,16 +3,22 @@
 
 using namespace dice::basic;
 
-int costam( const dice::Dice &d ) {
-    return d.roll();
+dice::Dice omg() {
+    dice::BasicDie<13> d13;
+    return { d13 };
+}
+
+int omg2( dice::Dice dice ) {
+    return dice.roll();
 }
 
 int main() {
-    dice::Dice d = d12;
-    std::cout << d4.roll() << " " << d.roll() << std::endl;
+    auto d = 102400000ll * dice::BasicDie<3>{};
+    std::cout << d.roll() << std::endl;
 
-    std::cout << costam( d12 ) << std::endl;
+    auto d2 = omg();
+    std::cout << d2.roll() << std::endl;
 
-    dice::Die<13> d13{};
-    std::cout << (2*d13 + 10).roll() << std::endl;
+    std::cout << omg2( d10 ) << std::endl;
+    std::cout << d100.roll( 0 ) << std::endl;
 }

@@ -1,24 +1,39 @@
 #ifndef SRD_DICE_DIE_HPP
 #define SRD_DICE_DIE_HPP
 
-#include <random>
+#include <memory>
 
 namespace dice {
+    class Die {
+    public:
+        using result_type = unsigned int;
 
-template<unsigned int sides, typename RandomEngine = std::mt19937>
-class Die {
-public:
-    using result_type = unsigned int;
+        Die() = default;
+        virtual ~Die() = default;
+        Die( const Die& ) = default;
+        Die( Die&& ) = default;
+        Die &operator=( const Die& ) & = default;
+        Die &operator=( Die&& ) & = default;
 
-    static auto roll() -> result_type {
-        static thread_local RandomEngine generator{ std::random_device{}() };
-        static thread_local std::uniform_int_distribution<result_type>
-                            distribution{ 1, sides };
+        virtual auto roll( const unsigned int times = 1 ) const -> result_type = 0;
+        virtual auto clone() const -> std::unique_ptr<Die> = 0;
 
-        return distribution( generator );
-    }
-};
+    private:
+        virtual auto hash() const -> result_type = 0;
 
+        template<typename T>
+        friend struct std::hash;
+        friend auto operator==( const Die&, const Die& ) -> bool;
+    };
+}
+
+namespace std {
+    template<>
+    struct hash<dice::Die*> {
+        auto operator()( const dice::Die *die ) const -> std::size_t {
+            return die->hash();
+        }
+    };
 }
 
 #endif // SRD_DICE_DIE_HPP
