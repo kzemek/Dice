@@ -1,0 +1,39 @@
+include( ExternalProject )
+include( FindPackageHandleStandardArgs )
+
+set( GMOCK_PREFIX gmock )
+
+set( GMOCK_SOURCE_DIR ${CMAKE_BINARY_DIR}/${GMOCK_PREFIX} )
+set( GMOCK_BINARY_DIR ${GMOCK_SOURCE_DIR}/build )
+set( GMOCK_INCLUDE_DIR ${GMOCK_SOURCE_DIR}/include )
+
+set( GTEST_BINARY_DIR ${GMOCK_BINARY_DIR}/gtest )
+set( GTEST_SOURCE_DIR ${GMOCK_SOURCE_DIR}/gtest )
+set( GTEST_INCLUDE_DIR ${GTEST_SOURCE_DIR}/include )
+
+set( GTEST_CMAKE_ARGS "" )
+
+ExternalProject_Add( gmock
+    PREFIX ${GMOCK_PREFIX}
+    SVN_REPOSITORY http://googlemock.googlecode.com/svn/trunk/
+    CMAKE_ARGS ${GTEST_CMAKE_ARGS}
+    SOURCE_DIR ${GMOCK_SOURCE_DIR}
+    BINARY_DIR ${GMOCK_BINARY_DIR}
+
+    UPDATE_COMMAND ""
+    INSTALL_COMMAND ""
+)
+
+set( GMOCK_LIBRARY ${GMOCK_BINARY_DIR}/libgmock.a )
+set( GMOCK_MAIN_LIBRARY ${GMOCK_BINARY_DIR}/libgmock_main.a )
+set( GMOCK_BOTH_LIBRARIES ${GMOCK_LIBRARY} ${GMOCK_MAIN_LIBRARY} )
+set( GTEST_LIBRARY ${GTEST_BINARY_DIR}/libgtest.a )
+set( GTEST_MAIN_LIBRARY ${GTEST_BINARY_DIR}/libgtest_main.a )
+set( GTEST_BOTH_LIBRARIES ${GTEST_LIBRARY} ${GTEST_MAIN_LIBRARY} )
+set( GTEST_ALL_LIBRARIES ${GTEST_BOTH_LIBRARIES} ${GMOCK_BOTH_LIBRARIES} )
+
+find_package_handle_standard_args( GTest
+    DEFAULT_MSG
+    GMOCK_INCLUDE_DIR
+    GTEST_INCLUDE_DIR
+)
