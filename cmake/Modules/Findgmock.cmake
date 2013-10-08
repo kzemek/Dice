@@ -4,7 +4,7 @@ include( FindPackageHandleStandardArgs )
 set( GMOCK_PREFIX gmock )
 
 set( GMOCK_SOURCE_DIR ${CMAKE_BINARY_DIR}/${GMOCK_PREFIX} )
-set( GMOCK_BINARY_DIR ${GMOCK_SOURCE_DIR}/build )
+set( GMOCK_BINARY_DIR ${GMOCK_SOURCE_DIR} )
 set( GMOCK_INCLUDE_DIR ${GMOCK_SOURCE_DIR}/include )
 
 set( GTEST_BINARY_DIR ${GMOCK_BINARY_DIR}/gtest )
@@ -13,7 +13,8 @@ set( GTEST_INCLUDE_DIR ${GTEST_SOURCE_DIR}/include )
 
 ExternalProject_Add( gmock
     PREFIX ${GMOCK_PREFIX}
-    SVN_REPOSITORY http://googlemock.googlecode.com/svn/trunk/
+    URL ${CMAKE_SOURCE_DIR}/external/gmock-1.7.0.zip
+    URL_MD5 073b984d8798ea1594f5e44d85b20d66
     SOURCE_DIR ${GMOCK_SOURCE_DIR}
     BINARY_DIR ${GMOCK_BINARY_DIR}
     CMAKE_ARGS -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
