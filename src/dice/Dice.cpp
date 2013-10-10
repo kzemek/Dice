@@ -34,4 +34,8 @@ namespace dice {
         result.m_bonus += bonus;
         return std::move( result );
     }
+
+    auto operator-( const Dice &dice, const int bonus ) -> Dice {
+        return operator+( dice, -bonus );
+    }
 }

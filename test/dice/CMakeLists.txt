@@ -1,5 +1,6 @@
 add_executable( test_dice
-    TestBasicDie.cpp
+    BasicDieTest.cpp
+    DiceTest.cpp
 )
 
 target_link_libraries( test_dice

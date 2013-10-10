@@ -16,10 +16,12 @@ namespace dice {
 
     private:
         int m_bonus = 0;
-        std::unordered_map<std::shared_ptr<const Die>, unsigned int> m_storedDice;
+        std::unordered_map<std::shared_ptr<Die>, unsigned int,
+                           DieHashHelper, DieHashHelper> m_storedDice;
 
         friend auto operator+( const Dice&, const Dice& ) -> Dice;
         friend auto operator+( const Dice&, const int ) -> Dice;
+        friend auto operator-( const Dice&, const int ) -> Dice;
     };
 
     auto operator*( const unsigned int amount, const Die &die ) -> Dice;

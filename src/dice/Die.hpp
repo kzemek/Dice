@@ -21,19 +21,22 @@ namespace dice {
     private:
         virtual auto hash() const -> std::size_t = 0;
 
-        template<typename T>
-        friend struct std::hash;
+        friend struct DieHashHelper;
         friend auto operator==( const Die&, const Die& ) -> bool;
     };
-}
 
-namespace std {
-    template<>
-    struct hash<dice::Die*> {
-        auto operator()( const dice::Die *die ) const -> std::size_t {
+    struct DieHashHelper {
+        auto operator()( const std::shared_ptr<Die> die ) const -> std::size_t {
             return die->hash();
+        }
+
+        auto operator()( const std::shared_ptr<Die> lhs,
+                         const std::shared_ptr<Die> rhs ) const -> bool {
+
+            return *lhs == *rhs;
         }
     };
 }
+
 
 #endif // SRD_DICE_DIE_HPP
