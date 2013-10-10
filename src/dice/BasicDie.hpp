@@ -13,7 +13,7 @@ namespace dice {
     template<unsigned int sides, typename RandomEngine = std::mt19937>
     class BasicDie: public Die {
     public:
-        auto roll( const unsigned int times = 1 ) const -> result_type override {
+        auto roll( const unsigned int times = 1 ) -> result_type override {
             static thread_local
                 RandomEngine generator{ std::random_device{}() };
             static thread_local
@@ -30,19 +30,19 @@ namespace dice {
         }
 
     private:
-        auto hash() const -> result_type override {
+        auto hash() const -> std::size_t override {
             return sides;
         }
     };
 
     namespace basic {
-        const extern BasicDie<4> d4;
-        const extern BasicDie<6> d6;
-        const extern BasicDie<8> d8;
-        const extern BasicDie<10> d10;
-        const extern BasicDie<12> d12;
-        const extern BasicDie<20> d20;
-        const extern BasicDie<100> d100;
+        extern BasicDie<4> d4;
+        extern BasicDie<6> d6;
+        extern BasicDie<8> d8;
+        extern BasicDie<10> d10;
+        extern BasicDie<12> d12;
+        extern BasicDie<20> d20;
+        extern BasicDie<100> d100;
     }
 }
 

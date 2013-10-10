@@ -15,11 +15,11 @@ namespace dice {
         Die &operator=( const Die& ) & = default;
         Die &operator=( Die&& ) & = default;
 
-        virtual auto roll( const unsigned int times = 1 ) const -> result_type = 0;
+        virtual auto roll( const unsigned int times = 1 ) -> result_type = 0;
         virtual auto clone() const -> std::unique_ptr<Die> = 0;
 
     private:
-        virtual auto hash() const -> result_type = 0;
+        virtual auto hash() const -> std::size_t = 0;
 
         template<typename T>
         friend struct std::hash;

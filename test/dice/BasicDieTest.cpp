@@ -18,7 +18,7 @@ private:
         MOCK_METHOD0( operatorParentheses, unsigned int() );
     };
 
-    static RandomEngineMock *g_randomEngineMock;
+    static RandomEngineMock *s_randomEngineMock;
 
 public:
     class RandomEngineMockProxy {
@@ -26,11 +26,11 @@ public:
         using result_type = unsigned int;
 
         explicit RandomEngineMockProxy( result_type value = 0 ) {
-            g_randomEngineMock->constructor( value );
+            s_randomEngineMock->constructor( value );
         }
 
         auto operator()() -> result_type {
-            return g_randomEngineMock->operatorParentheses();
+            return s_randomEngineMock->operatorParentheses();
         }
 
         auto seed( result_type ) -> void {}
@@ -42,15 +42,15 @@ public:
     NiceMock<RandomEngineMock> randomEngineMock;
 
     RandomEngineFixture() {
-        g_randomEngineMock = &randomEngineMock;
+        s_randomEngineMock = &randomEngineMock;
     }
 
     ~RandomEngineFixture() {
-        g_randomEngineMock = nullptr;
+        s_randomEngineMock = nullptr;
     }
 };
 
-RandomEngineFixture::RandomEngineMock *RandomEngineFixture::g_randomEngineMock{ nullptr };
+RandomEngineFixture::RandomEngineMock *RandomEngineFixture::s_randomEngineMock{ nullptr };
 
 
 TEST_F( RandomEngineFixture, RandomEngineShouldBeCreatedOnRoll ) {
