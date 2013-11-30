@@ -26,7 +26,7 @@ public:
 
         auto clone() const -> std::unique_ptr<Die> override {
             dieMock->clone();
-            return std::make_unique<DieMockWrapper>( *this );
+            return utility::make_unique<DieMockWrapper>( *this );
         }
 
         auto hash() const -> std::size_t override {
@@ -45,7 +45,7 @@ TEST_F( DiceTestFixture, DieObjectShouldBeImplicitlyCastableToDice ) {
 }
 
 TEST_F( DiceTestFixture, DiceObjectShouldStoreeItsOwnClonesOfDice ) {
-    auto tempDie = std::make_unique<DieMockWrapper>();
+    auto tempDie = utility::make_unique<DieMockWrapper>();
     EXPECT_CALL( *tempDie->dieMock, clone() );
 
     Dice d( *tempDie );

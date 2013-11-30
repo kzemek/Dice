@@ -10,7 +10,9 @@
 #include <type_traits>
 #include <utility>
 
-namespace std {
+namespace utility {
+    using namespace std;
+
     template<class T> struct _Unique_if {
         typedef unique_ptr<T> _Single_object;
     };

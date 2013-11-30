@@ -26,7 +26,7 @@ namespace dice {
         }
 
         auto clone() const -> std::unique_ptr<Die> override {
-            return std::make_unique<BasicDie>( *this );
+            return utility::make_unique<BasicDie>( *this );
         }
 
     private:

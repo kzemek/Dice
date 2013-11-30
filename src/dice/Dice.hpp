@@ -25,6 +25,7 @@ namespace dice {
     };
 
     auto operator*( const unsigned int amount, const Die &die ) -> Dice;
+    auto operator+( const Die &, const Die& ) -> Dice;
 }
 
 #endif // SRD_DICE_DICE_HPP

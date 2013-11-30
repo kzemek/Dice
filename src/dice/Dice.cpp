@@ -38,4 +38,8 @@ namespace dice {
     auto operator-( const Dice &dice, const int bonus ) -> Dice {
         return operator+( dice, -bonus );
     }
+
+    auto operator+( const Die &lhs, const Die &rhs ) -> Dice {
+        return Dice{ lhs } + rhs;
+    }
 }
