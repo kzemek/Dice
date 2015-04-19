@@ -17,7 +17,7 @@ The built library will be located in ```build/src/dice```. To use the library, y
 ## Usage
 The basic class of the library is Dice. Dice is a collection of Die objects. In most cases, you don't need to concern yourself about Die objects - they are implicitly converted to Dice collection.
 
-You can import all needed declarations by using ```cpp #include dice/include.hpp```
+You can import all needed declarations by including ```dice/include.hpp```
 
 
 The namespace dice::basic contains Die objects representing standard dice. Out of the box you can use any of the following die types: d4, d6, d8, d10, d12, d20 and d100 (also known as d% or dp).
@@ -62,7 +62,7 @@ d = d - 8;
 d.roll();           // returns a number between -2 (2*1 - 4) and 20 (2*12 - 4)
 ```
 
-You can also add dice collections. It works for Die objects as well (the Dice.cpp header has to be included).
+You can also add dice collections. It works for Die objects as well (the Dice.hpp header has to be included).
 ```cpp
 using namespace dice::basic;
 using dice::Dice;
